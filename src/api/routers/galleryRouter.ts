@@ -5,21 +5,40 @@ import { ObjectID } from 'mongodb';
 import { Operation, applyPatch, Validator, validate, JsonPatchError } from 'fast-json-patch';
 import { GalleryRepo } from '../../data/repos/galleryRepo';
 import { GalleryApiModel } from '../models/galleryApiModel';
+import { BadRequestError } from 'nms-package-common';
 
 const router: Router = express.Router();
 
-router.get('/', (req: Request, resp: Response, next: NextFunction) => {
-    GalleryRepo.getAll()
-        .then((galleries: Gallery[]) => galleries.map(model => new GalleryApiModel(model)))
-        .then((apiModels: GalleryApiModel[]) => resp.send(apiModels))
-        .catch(err => next(err));
-});
+// router.get('/', (req: Request, resp: Response, next: NextFunction) => {
+//     GalleryRepo.getAll()
+//         .then((galleries: Gallery[]) => galleries.map(model => new GalleryApiModel(model)))
+//         .then((apiModels: GalleryApiModel[]) => resp.send(apiModels))
+//         .catch(err => next(err));
+// });
 
 router.get('/:id', (req: Request, resp: Response, next: NextFunction) => {
     const id: ObjectID = new ObjectID(req.params.id);
 
     GalleryRepo.getById(id)
         .then((gallery: Gallery) => resp.send(new GalleryApiModel(gallery)))
+        .catch(err => next(err));
+});
+
+router.get('/', (req: Request, resp: Response, next: NextFunction) => {
+    let profileId: ObjectID;
+
+    try {
+        if (!req.params.profileId)
+            throw new Error("Value is required.");
+            
+        profileId = new ObjectID(req.query.profileId.toString());
+    } catch (error) {
+        throw new BadRequestError(`profileId: ${error.message}`);
+    }
+
+    GalleryRepo.getByProfileId(profileId)
+        .then((galleries: Gallery[]) => galleries.map(gallery => new GalleryApiModel(gallery)))
+        .then((galleries: GalleryApiModel[]) => resp.send(galleries))
         .catch(err => next(err));
 });
 

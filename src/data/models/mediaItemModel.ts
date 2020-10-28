@@ -1,13 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { ObjectID } from 'mongodb';
-
 import { GalleryVisibility } from 'nms-package-common';
+import { Gallery } from './galleryModel';
+import { FileType } from '../../enums/fileType';
 
-export interface Gallery extends Document {
-    name: string;
-    createDate: Date;
-    profileId: ObjectID;
-    visibility: GalleryVisibility;
+export interface MediaItem extends Document {
+    galleryId: Gallery['id'];
+    uploadDate: Date;
+    fileType: FileType;
+    caption?: string;
 }
 
 const GallerySchema: Schema = new Schema({

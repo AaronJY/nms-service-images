@@ -3,7 +3,7 @@ import GalleryRouter from './api/routers/galleryRouter';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import { ServiceConfig } from './config/serviceConfig';
-import { errorResponseCodeHandler, errorResponseHandler } from 'nodejs-ms-pkg-common';
+import { errorResponseCodeHandler, errorResponseHandler } from 'nms-package-common';
 
 export class ImageService {
     private api: express.Express;

@@ -1310,16 +1310,6 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nodejs-ms-pkg-common@1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/nodejs-ms-pkg-common/-/nodejs-ms-pkg-common-1.0.9.tgz#513dd98810ee069d0df9f7e06a2439862a132767"
-  integrity sha512-YB1xuOx9lS7JR3uJ+d5Vx9wl6W17ktQvO6G8bhLPfU8g7jAR325xtvgNCLTkAOzeOyNVPU/eOCQS9CeJA2S29A==
-  dependencies:
-    express "^4.17.1"
-    fast-json-patch "^3.0.0-1"
-    mongodb "^3.5.6"
-    mongoose "^5.9.9"
-
 normalize-package-data@^2.3.2:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"

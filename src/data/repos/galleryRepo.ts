@@ -4,10 +4,6 @@ import { ObjectID } from 'mongodb';
 import { GalleryExistsError } from '../../errors/galleryExistsError';
 
 export class GalleryRepo {
-    static async getAll(): Promise<Gallery[]> {
-        return await GalleryModel.find();
-    }
-
     static async getById(id: ObjectID): Promise<Gallery> {
         const gallery: Gallery = await GalleryModel.findById(id);
 
@@ -16,6 +12,10 @@ export class GalleryRepo {
         }
 
         return gallery;
+    }
+
+    static async getByProfileId(profileId: ObjectID): Promise<Gallery[]> {
+        return GalleryModel.find({ profileId: profileId });
     }
 
     static async getByName(profileId: ObjectID, galleryName: string): Promise<boolean> {

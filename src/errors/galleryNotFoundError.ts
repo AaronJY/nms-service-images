@@ -1,5 +1,5 @@
 import { ObjectID } from 'mongodb';
-import { NotFoundError } from 'nodejs-ms-pkg-common';
+import { NotFoundError } from 'nms-package-common';
 
 export class GalleryNotFoundError extends NotFoundError {
     galleryId: ObjectID;
