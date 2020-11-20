@@ -9,13 +9,6 @@ import { BadRequestError } from 'nms-package-common';
 
 const router: Router = express.Router();
 
-// router.get('/', (req: Request, resp: Response, next: NextFunction) => {
-//     GalleryRepo.getAll()
-//         .then((galleries: Gallery[]) => galleries.map(model => new GalleryApiModel(model)))
-//         .then((apiModels: GalleryApiModel[]) => resp.send(apiModels))
-//         .catch(err => next(err));
-// });
-
 router.get('/:id', (req: Request, resp: Response, next: NextFunction) => {
     const id: ObjectID = new ObjectID(req.params.id);
 

@@ -1,5 +1,6 @@
 import express from 'express';
 import GalleryRouter from './api/routers/galleryRouter';
+import MediaItemRouter from './api/routers/mediaItemRouter';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import { ServiceConfig } from './config/serviceConfig';
@@ -19,6 +20,7 @@ export class ImageService {
         this.api = express();
         this.api.use(bodyparser.json());
         this.api.use('/api/v1/gallery', GalleryRouter);
+        this.api.use('/api/v1/mediaItem', MediaItemRouter);
         this.api.use(errorResponseCodeHandler);
         this.api.use(errorResponseHandler);
     }

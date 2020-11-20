@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { ObjectID } from 'mongodb';
-import { GalleryVisibility } from 'nms-package-common';
 import { Gallery } from './galleryModel';
 import { FileType } from '../../enums/fileType';
 
@@ -11,11 +10,11 @@ export interface MediaItem extends Document {
     caption?: string;
 }
 
-const GallerySchema: Schema = new Schema({
-    name: { type: String, required: true },
-    createDate: { type: Date, required: true, default: Date() },
-    profileId: { type: ObjectID, required: true },
-    visibility: { type: GalleryVisibility, required: true, default: GalleryVisibility.Private }
-}, { collection: 'galleries' });
+const MediaItemSchema: Schema = new Schema({
+    galleryId: { type: ObjectID, required: true },
+    uploadDate: { type: Date, required: true, default: Date()},
+    fileType: { type: FileType, required: true },
+    caption: { type: String, required: false }
+}, { collection: 'mediaItems' });
 
-export default mongoose.model<Gallery>('Gallery', GallerySchema);
+export default mongoose.model<MediaItem>('MediaItem', MediaItemSchema);
